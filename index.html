@@ -1,78 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carolina Care</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <title>Palmetto Pups - Dog Walking & Sitting</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .palmetto-tree {
+            font-size: 3.5rem;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            font-style: italic;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        section:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '🐾';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            color: #475569;
+            line-height: 1.8;
+            text-align: center;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
+            border: 2px solid #dbeafe;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 3px solid #dbeafe;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.2);
+        }
+
+        .service-name {
+            font-size: 1.8rem;
+            color: #1e3a8a;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .service-price {
+            font-size: 2.5rem;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .service-description {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .service-description ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .service-description ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-description ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        .contact-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+        }
+
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+        }
+
+        .package-section {
+            background: linear-gradient(135deg, #dbeafe 0%, #f8fafc 100%);
+            border-radius: 30px;
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+        }
+
+        .package-header {
+            font-size: 2rem;
+            color: #1e3a8a;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .package-card {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border: 3px solid #2563eb;
+        }
+
+        .package-badge {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .palmetto-tree {
+                font-size: 2.5rem;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content {
+                font-size: 1.1rem;
+                padding: 2rem;
+            }
         }
     </style>
 </head>
-
-<body class="bg-gray-100">
-    <!-- Navigation Bar -->
-    <nav class="flex justify-between items-center p-5 bg-white shadow-md">
-        <div class="text-2xl font-bold text-green-600">Carolina Care</div>
-        <div class="space-x-4">
-            <a href="#home" class="text-gray-700 hover:text-green-500">Home</a>
-            <a href="#services" class="text-gray-700 hover:text-green-500">Services</a>
+<body>
+    <header>
+        <div class="header-title">
+            <span class="palmetto-tree">🌴</span>
+            <h1>Palmetto Pups</h1>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header id="home" class="flex flex-col items-center justify-center h-screen bg-cover bg-center" style="background-image: url('https://via.placeholder.com/800x400.png?text=Happy+Dog');">
-        <div class="bg-white bg-opacity-75 p-10 rounded-lg shadow-lg">
-            <h1 class="text-4xl font-bold text-center text-green-600">Carolina Care</h1>
-            <p class="text-lg text-center mt-4">Dependable dog walking and pet sitting services provided by a responsible local student. Committed to safe, reliable, and attentive pet care.</p>
-        </div>
+        <p>Care You Can Trust</p>
     </header>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center text-green-600 mb-10">Our Services</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Card 1 -->
-                <div class="bg-white p-5 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold text-green-600">Dog Walking</h3>
-                    <ul class="mt-4">
-                        <li class="my-2">Option A: Basic Walk (1 mile) — <strong>$8</strong></li>
-                        <li class="my-2">Option B: Long Walk (2 miles) — <strong>$15</strong></li>
-                    </ul>
+    <section id="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            Hi! We're two responsible high school students with a genuine love for animals. As dedicated students and pet owners ourselves, we understand how important it is to have someone you can trust caring for your pets. We offer reliable dog walking and pet sitting services with a focus on safety, attention and plenty of love. Our goal is to give pet owners peace of mind while keeping your pets happy and active!
+        </div>
+    </section>
+
+    <section id="walks">
+        <h2 class="section-title">Tail-Wagging Walks</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-name">1 Mile Walk</div>
+                <div class="service-price">$8</div>
+                <div class="service-description">
+                    Perfect for a quick potty break and some fresh air! Your pup will enjoy a leisurely stroll around the neighborhood.
                 </div>
-                <!-- Card 2 -->
-                <div class="bg-white p-5 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold text-green-600">Pet Check-In</h3>
-                    <p class="mt-4"><strong>$8</strong></p>
-                    <ul class="mt-2 list-disc list-inside">
-                        <li>Bathroom break</li>
-                        <li>Water and food refill</li>
-                        <li>Playtime</li>
-                        <li>Photo updates</li>
-                    </ul>
-                </div>
-                <!-- Card 3 -->
-                <div class="bg-white p-5 rounded-lg shadow-lg">
-                    <h3 class="text-xl font-semibold text-green-600">Full Care Package</h3>
-                    <p class="mt-4"><strong>$22</strong></p>
-                    <p class="mt-2">Includes one Basic Walk and two Daily Check-ins.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-name">2 Mile Walk</div>
+                <div class="service-price">$15</div>
+                <div class="service-description">
+                    An extended adventure for energetic pups! We'll explore further and give your furry friend plenty of exercise and enrichment.
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-white py-5 mt-10">
-        <div class="container mx-auto text-center">
-            <a href="mailto:cscarolinacare@gmail.com" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-300">Contact Us</a>
-            <p class="mt-4 text-gray-600">Serving the local community with care.</p>
+    <section id="checkin">
+        <h2 class="section-title">Home Check-Ins</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-name">One Check-In</div>
+                <div class="service-price">$10</div>
+                <div class="service-description">
+                    We'll stop by to give your pup some love and care while you're away!
+                    <ul>
+                        <li>Bathroom break</li>
+                        <li>Food and water refill (if needed)</li>
+                        <li>Quality attention and playtime</li>
+                        <li>Photo and text updates</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+        <div style="text-align: center;">
+            <a href="mailto:cscarolinacare@gmail.com" class="contact-button">Contact Us</a>
+        </div>
+    </section>
+
+    <section id="package">
+        <div class="package-section">
+            <h2 class="package-header">Gone For a Day? Try Our Pup Package!</h2>
+            <div class="package-card">
+                <div class="package-badge">BEST VALUE</div>
+                <div class="service-name">Pup Package</div>
+                <div class="service-price">$33</div>
+                <div class="service-description">
+                    Everything your pup needs while you're out for the day!
+                    <ul>
+                        <li>Three home check-ins</li>
+                        <li>One basic walk</li>
+                        <li>Food, water, and bathroom breaks</li>
+                        <li>Regular updates throughout the day</li>
+                        <li>Peace of mind for pet parents</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Palmetto Pups. All rights reserved. Made with ❤️ for your furry friends!</p>
     </footer>
 </body>
-
 </html>
