@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Palmetto Pups - Dog Walking & Sitting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,226 +13,658 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Lora', serif;
             line-height: 1.6;
             color: #333;
             scroll-behavior: smooth;
+            background-color: #f5f5f5;
+            position: relative;
+            overflow-x: hidden;
+            padding-top: 60px;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #002868;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links li {
+            padding: 1rem 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: opacity 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Paw Print Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 15%, rgba(0, 40, 104, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 25%, rgba(0, 40, 104, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 40% 45%, rgba(0, 40, 104, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(0, 40, 104, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 15% 75%, rgba(0, 40, 104, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 85% 85%, rgba(0, 40, 104, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .paw-print {
+            position: absolute;
+            opacity: 0.08;
+            color: #002868;
+            font-size: 2rem;
+            pointer-events: none;
+            z-index: 1;
         }
 
         header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            background: #002868;
             color: white;
             padding: 3rem 2rem;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .header-title {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 0.5rem;
+        header::before,
+        header::after {
+            content: '🐾';
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
         }
 
-        .palmetto-tree {
-            font-size: 3.5rem;
+        header::before {
+            top: 1rem;
+            left: 2rem;
+            transform: rotate(-15deg);
+        }
+
+        header::after {
+            bottom: 1rem;
+            right: 2rem;
+            transform: rotate(15deg);
         }
 
         header h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
         }
 
         header p {
+            font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
             opacity: 0.95;
             font-style: italic;
+            position: relative;
+            z-index: 2;
         }
 
         section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
+            padding: 4rem 2rem;
+            max-width: 1400px;
             margin: 0 auto;
-        }
-
-        section:nth-child(even) {
-            background-color: #f8fafc;
-        }
-
-        section:nth-child(odd) {
-            background-color: #ffffff;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: #1e3a8a;
-            margin-bottom: 2rem;
-            text-align: center;
             position: relative;
-            padding-bottom: 1rem;
+            z-index: 1;
         }
 
-        .section-title::after {
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 3rem;
+            font-weight: 600;
+            text-align: left;
+            padding-left: 1rem;
+            border-left: 4px solid #002868;
+            position: relative;
+        }
+
+        .section-header::after {
             content: '🐾';
             position: absolute;
-            bottom: -0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
             font-size: 1.5rem;
+            opacity: 0.2;
+        }
+
+        .about-section {
+            background-color: white;
+            padding: 4rem 2rem;
+            position: relative;
         }
 
         .about-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            font-size: 1.2rem;
-            color: #475569;
+            font-size: 1.1rem;
+            color: #555;
             line-height: 1.8;
             text-align: center;
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.1);
-            border: 2px solid #dbeafe;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .about-content::before,
+        .about-content::after {
+            content: '🐾';
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+
+        .about-content::before {
+            top: 0;
+            left: 0;
+        }
+
+        .about-content::after {
+            bottom: 0;
+            right: 0;
+        }
+
+        .services-container {
+            background-color: #e8e8e8;
+            padding: 4rem 2rem;
+            position: relative;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .service-card {
             background: white;
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 3px solid #dbeafe;
+            position: relative;
+        }
+
+        .service-card::before {
+            content: '🐾';
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2.5rem;
+            opacity: 0.05;
+            pointer-events: none;
         }
 
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 30px rgba(30, 58, 138, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .service-content {
+            padding: 2rem;
+            text-align: center;
         }
 
         .service-name {
-            font-size: 1.8rem;
-            color: #1e3a8a;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .service-note {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
             margin-bottom: 1rem;
-            font-weight: bold;
+        }
+
+        .service-options {
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .service-option {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .service-option:last-child {
+            border-bottom: none;
+        }
+
+        .option-name {
+            font-weight: 500;
+            color: #555;
+        }
+
+        .option-note {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .option-price {
+            color: #002868;
+            font-weight: 600;
         }
 
         .service-price {
-            font-size: 2.5rem;
-            color: #2563eb;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
+            font-size: 1.3rem;
+            color: #002868;
+            font-weight: 600;
+            margin-bottom: 1rem;
         }
 
         .service-description {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.8;
+            font-size: 0.95rem;
+            color: #777;
+            margin-top: 1rem;
+            line-height: 1.6;
         }
 
         .service-description ul {
             list-style: none;
             margin-top: 1rem;
+            text-align: left;
         }
 
         .service-description ul li {
+            padding: 0.3rem 0;
+            padding-left: 1.2rem;
+            position: relative;
+            font-size: 0.9rem;
+        }
+
+        .service-description ul li::before {
+            content: '🐾';
+            position: absolute;
+            left: -0.3rem;
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        .package-section {
+            background-color: white;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .package-card {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: white;
+            border: 1px solid #ddd;
+            padding: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .package-card::after {
+            content: '🐾';
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 3rem;
+            opacity: 0.05;
+        }
+
+        .package-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .package-badge {
+            background: #002868;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .package-price {
+            font-size: 2rem;
+            color: #002868;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .package-description {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .package-description ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .package-description ul li {
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
         }
 
-        .service-description ul li::before {
-            content: '✓';
+        .package-description ul li::before {
+            content: '🐾';
             position: absolute;
             left: 0;
-            color: #2563eb;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Custom Package Calculator */
+        .custom-package {
+            background: white;
+            border-radius: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .calculator-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .calculator-item:last-of-type {
+            border-bottom: 2px solid #002868;
+            margin-bottom: 1rem;
+        }
+
+        .item-info {
+            flex: 1;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-price {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .dog-count-selector {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: 1rem;
+        }
+
+        .dog-count-selector label {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .dog-count-selector input {
+            width: 60px;
+            padding: 0.3rem 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .quantity-btn {
+            background: #002868;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .quantity-btn:hover {
+            background: #001a4d;
+        }
+
+        .quantity-display {
+            min-width: 40px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .discount-section {
+            padding: 1rem 0;
+            text-align: right;
+            color: #002868;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .total-section {
+            padding: 1.5rem 0;
+            text-align: right;
+        }
+
+        .total-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .total-amount {
+            font-size: 2rem;
+            color: #002868;
             font-weight: bold;
+            margin-left: 1rem;
+        }
+
+        .order-button {
+            width: 100%;
+            padding: 1rem;
+            background: #002868;
+            color: white;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .order-button:hover {
+            background: #001a4d;
+        }
+
+        .contact-section {
+            background-color: #e8e8e8;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
         }
 
         .contact-button {
             display: inline-block;
-            margin-top: 2rem;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            margin-top: 1rem;
+            padding: 1rem 3rem;
+            background: #002868;
             color: white;
             text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            font-family: 'Playfair Display', serif;
         }
 
         .contact-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
-        }
-
-        .package-section {
-            background: linear-gradient(135deg, #dbeafe 0%, #f8fafc 100%);
-            border-radius: 30px;
-            padding: 4rem 2rem;
-            margin: 2rem 0;
-            box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
-        }
-
-        .package-header {
-            font-size: 2rem;
-            color: #1e3a8a;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .package-card {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-            border: 3px solid #2563eb;
-        }
-
-        .package-badge {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-            font-weight: bold;
-            font-size: 1.1rem;
+            background: #001a4d;
         }
 
         footer {
-            background-color: #1e3a8a;
+            background-color: #002868;
             color: white;
             text-align: center;
             padding: 2rem;
-            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before,
+        footer::after {
+            content: '🐾';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+        }
+
+        footer::before {
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%) rotate(-20deg);
+        }
+
+        footer::after {
+            top: 50%;
+            right: 2rem;
+            transform: translateY(-50%) rotate(20deg);
         }
 
         footer p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem;
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .header-title {
-                flex-direction: column;
-                gap: 0.5rem;
+            .nav-container {
+                justify-content: space-between;
             }
 
-            .palmetto-tree {
-                font-size: 2.5rem;
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background: #002868;
+                padding: 2rem;
+                gap: 0;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                padding: 1rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
             }
 
             header h1 {
@@ -242,106 +675,282 @@
                 font-size: 1.1rem;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .section-header {
+                font-size: 1.6rem;
             }
 
-            section {
-                padding: 3rem 1.5rem;
+            .calculator-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
 
-            .services-grid {
-                grid-template-columns: 1fr;
+            .item-controls {
+                width: 100%;
+                justify-content: flex-end;
             }
 
-            .about-content {
-                font-size: 1.1rem;
-                padding: 2rem;
+            .dog-count-selector {
+                margin-left: 0;
+                margin-top: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-title">
-            <span class="palmetto-tree">🌴</span>
-            <h1>Palmetto Pups</h1>
+    <nav>
+        <div class="nav-container">
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" onclick="closeMenu()">About Us</a></li>
+                <li><a href="#services" onclick="closeMenu()">Our Services</a></li>
+                <li><a href="#packages" onclick="closeMenu()">Package Deals</a></li>
+                <li><a href="#contact" onclick="closeMenu()">Contact Us</a></li>
+            </ul>
         </div>
-        <p>"Care You Can Trust"</p>
+    </nav>
+
+    <header>
+        <h1>Palmetto Pups</h1>
+        <p>Care You Can Trust</p>
     </header>
 
-    <section id="about">
-        <h2 class="section-title">About Us</h2>
+    <section class="about-section" id="about">
+        <h2 class="section-header">About Us</h2>
         <div class="about-content">
-            Hi! We're two responsible high school students with a genuine love for animals. As dedicated students and pet owners ourselves, we understand how important it is to have someone you can trust caring for your pets. We offer reliable dog walking and pet sitting services with a focus on safety, attention and plenty of love. Our goal is to give pet owners peace of mind while keeping your pets happy and active!
+            Hi! We're two responsible high school students based in Chapin SC, with a genuine love for animals. As dedicated students and pet owners ourselves, we understand how important it is to have someone you can trust caring for your pets. We offer reliable dog walking and pet sitting services with a focus on safety, attention and plenty of love. Our goal is to give pet parents peace of mind while keeping your pets happy and active!
         </div>
     </section>
 
-    <section id="walks">
-        <h2 class="section-title">Tail-Wagging Walks</h2>
+    <section class="services-container" id="services">
+        <h2 class="section-header">Our Services</h2>
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-name">1 Mile Walk</div>
-                <div class="service-price">$8</div>
-                <div class="service-description">
-                    Perfect for a quick potty break and some fresh air! Your pup will enjoy a leisurely stroll around the neighborhood.
+                <div class="service-content">
+                    <div class="service-name">Walks</div>
+                    <div class="service-note">(Dependent on size of dogs - Max 3 dogs)</div>
+                    <div class="service-options">
+                        <div class="service-option">
+                            <div>
+                                <div class="option-name">1 Mile Walk</div>
+                                <div class="option-note">(+$4 per additional dog)</div>
+                            </div>
+                            <span class="option-price">$8.00</span>
+                        </div>
+                        <div class="service-option">
+                            <div>
+                                <div class="option-name">2 Mile Walk</div>
+                                <div class="option-note">(+$4 per additional dog)</div>
+                            </div>
+                            <span class="option-price">$15.00</span>
+                        </div>
+                    </div>
+                    <div class="service-description">
+                        From quick potty breaks to extended adventures, we'll give your pup the exercise and fresh air they need!
+                    </div>
                 </div>
             </div>
+
             <div class="service-card">
-                <div class="service-name">2 Mile Walk</div>
-                <div class="service-price">$15</div>
-                <div class="service-description">
-                    An extended adventure for energetic pups! We'll explore further and give your furry friend plenty of exercise and enrichment.
+                <div class="service-content">
+                    <div class="service-name">Check-In</div>
+                    <div class="service-price">$10.00</div>
+                    <div class="service-description">
+                        We'll stop by to give your pup some love and care while you're away!
+                        <ul>
+                            <li>Bathroom break</li>
+                            <li>Food and water refill (if needed)</li>
+                            <li>Quality attention and playtime</li>
+                            <li>Photo and text updates</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="checkin">
-        <h2 class="section-title">Home Check-Ins</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-name">One Check-In</div>
-                <div class="service-price">$10</div>
-                <div class="service-description">
-                    We'll stop by to give your pup some love and care while you're away!
-                    <ul>
-                        <li>Bathroom break</li>
-                        <li>Food and water refill (if needed)</li>
-                        <li>Quality attention and playtime</li>
-                        <li>Photo and text updates</li>
-                    </ul>
-                </div>
+    <section class="package-section" id="packages">
+        <h2 class="section-header">Package Deals</h2>
+        
+        <div class="package-card">
+            <div class="package-badge">BEST VALUE</div>
+            <div class="package-header">Pup Package</div>
+            <div class="package-price">$33.00</div>
+            <div class="package-description">
+                Gone for a day? This package has everything your pup needs!
+                <ul>
+                    <li>Three home check-ins</li>
+                    <li>One 1-mile walk</li>
+                    <li>Food, water, and bathroom breaks</li>
+                    <li>Regular updates throughout the day</li>
+                    <li>Peace of mind for pet parents</li>
+                </ul>
             </div>
         </div>
-        <div style="text-align: center;">
-            <a href="mailto:cscarolinacare@gmail.com" class="contact-button">Contact Us</a>
+
+        <div class="custom-package">
+            <h3 class="package-header" style="margin-bottom: 2rem;">Build Your Own Custom Package</h3>
+            
+            <div class="calculator-item">
+                <div class="item-info">
+                    <div class="item-name">1 Mile Walk</div>
+                    <div class="item-price">$8.00 each (+$4 per additional dog, max 3 dogs)</div>
+                </div>
+                <div class="item-controls">
+                    <button class="quantity-btn" onclick="updateQuantity('walk1', -1)">-</button>
+                    <span class="quantity-display" id="walk1-qty">0</span>
+                    <button class="quantity-btn" onclick="updateQuantity('walk1', 1)">+</button>
+                    <div class="dog-count-selector">
+                        <label for="walk1-dogs">Dogs:</label>
+                        <input type="number" id="walk1-dogs" min="1" max="3" value="1" onchange="updateTotal()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-item">
+                <div class="item-info">
+                    <div class="item-name">2 Mile Walk</div>
+                    <div class="item-price">$15.00 each (+$4 per additional dog, max 3 dogs)</div>
+                </div>
+                <div class="item-controls">
+                    <button class="quantity-btn" onclick="updateQuantity('walk2', -1)">-</button>
+                    <span class="quantity-display" id="walk2-qty">0</span>
+                    <button class="quantity-btn" onclick="updateQuantity('walk2', 1)">+</button>
+                    <div class="dog-count-selector">
+                        <label for="walk2-dogs">Dogs:</label>
+                        <input type="number" id="walk2-dogs" min="1" max="3" value="1" onchange="updateTotal()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculator-item">
+                <div class="item-info">
+                    <div class="item-name">Check-In</div>
+                    <div class="item-price">$10.00 each</div>
+                </div>
+                <div class="item-controls">
+                    <button class="quantity-btn" onclick="updateQuantity('checkin', -1)">-</button>
+                    <span class="quantity-display" id="checkin-qty">0</span>
+                    <button class="quantity-btn" onclick="updateQuantity('checkin', 1)">+</button>
+                </div>
+            </div>
+
+            <div class="discount-section" id="discount-info" style="display: none;">
+                10% Discount Applied (orders over $40)
+            </div>
+
+            <div class="total-section">
+                <span class="total-label">Total:</span>
+                <span class="total-amount" id="total-price">$0.00</span>
+            </div>
+
+            <button class="order-button" onclick="sendOrder()">Ready to Check Availability? Send Us Your Order!</button>
         </div>
     </section>
 
-    <section id="package">
-        <div class="package-section">
-            <h2 class="package-header">Gone For a Day? Try Our Pup Package!</h2>
-            <div class="package-card">
-                <div class="package-badge">BEST VALUE</div>
-                <div class="service-name">Pup Package</div>
-                <div class="service-price">$33</div>
-                <div class="service-description">
-                    Everything your pup needs while you're out for the day!
-                    <ul>
-                        <li>Three home check-ins</li>
-                        <li>One basic walk</li>
-                        <li>Food, water, and bathroom breaks</li>
-                        <li>Regular updates throughout the day</li>
-                        <li>Peace of mind for pet parents</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <section class="contact-section" id="contact">
+        <h2 class="section-header">Contact Us</h2>
+        <p style="font-size: 1.1rem; color: #555; margin-bottom: 1rem;">Ready to schedule a walk or have questions? Get in touch with us!</p>
+        <a href="mailto:cscarolinacare@gmail.com" class="contact-button">Send Us an Email</a>
     </section>
 
     <footer>
         <p>&copy; 2024 Palmetto Pups. All rights reserved. Made with ❤️ for your furry friends!</p>
     </footer>
+
+    <script>
+        const prices = {
+            walk1: 8.00,
+            walk2: 15.00,
+            checkin: 10.00
+        };
+
+        const quantities = {
+            walk1: 0,
+            walk2: 0,
+            checkin: 0
+        };
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        function updateQuantity(service, change) {
+            quantities[service] = Math.max(0, quantities[service] + change);
+            document.getElementById(service + '-qty').textContent = quantities[service];
+            updateTotal();
+        }
+
+        function updateTotal() {
+            let subtotal = 0;
+            
+            // Calculate walk prices with per-dog fee (max 3 dogs)
+            const walk1Dogs = Math.min(3, Math.max(1, parseInt(document.getElementById('walk1-dogs').value) || 1));
+            const walk2Dogs = Math.min(3, Math.max(1, parseInt(document.getElementById('walk2-dogs').value) || 1));
+            
+            // Enforce max 3 dogs
+            document.getElementById('walk1-dogs').value = walk1Dogs;
+            document.getElementById('walk2-dogs').value = walk2Dogs;
+            
+            // Base price + $4 for each additional dog
+            const walk1Price = prices.walk1 + (Math.max(0, walk1Dogs - 1) * 4);
+            const walk2Price = prices.walk2 + (Math.max(0, walk2Dogs - 1) * 4);
+            
+            subtotal += quantities.walk1 * walk1Price;
+            subtotal += quantities.walk2 * walk2Price;
+            subtotal += quantities.checkin * prices.checkin;
+            
+            // Apply 10% discount if over $40
+            let total = subtotal;
+            const discountInfo = document.getElementById('discount-info');
+            
+            if (subtotal > 40) {
+                total = subtotal * 0.9;
+                discountInfo.style.display = 'block';
+            } else {
+                discountInfo.style.display = 'none';
+            }
+            
+            document.getElementById('total-price').textContent = '$' + total.toFixed(2);
+        }
+
+        function sendOrder() {
+            const walk1Dogs = parseInt(document.getElementById('walk1-dogs').value) || 1;
+            const walk2Dogs = parseInt(document.getElementById('walk2-dogs').value) || 1;
+            
+            let orderDetails = "Order Details:\n\n";
+            
+            if (quantities.walk1 > 0) {
+                orderDetails += `${quantities.walk1} x 1 Mile Walk (${walk1Dogs} dog${walk1Dogs > 1 ? 's' : ''})\n`;
+            }
+            
+            if (quantities.walk2 > 0) {
+                orderDetails += `${quantities.walk2} x 2 Mile Walk (${walk2Dogs} dog${walk2Dogs > 1 ? 's' : ''})\n`;
+            }
+            
+            if (quantities.checkin > 0) {
+                orderDetails += `${quantities.checkin} x Check-In\n`;
+            }
+            
+            const totalText = document.getElementById('total-price').textContent;
+            orderDetails += `\nTotal: ${totalText}`;
+            
+            if (quantities.walk1 === 0 && quantities.walk2 === 0 && quantities.checkin === 0) {
+                alert('Please add at least one service to your order.');
+                return;
+            }
+            
+            const subject = encodeURIComponent('Palmetto Pups - Custom Package Order');
+            const body = encodeURIComponent(orderDetails);
+            
+            window.location.href = `mailto:cscarolinacare@gmail.com?subject=${subject}&body=${body}`;
+        }
+    </script>
 </body>
 </html>
